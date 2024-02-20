@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "660170939698",
+    "project_id": "apppfe-c1c9a",
+    "storage_bucket": "apppfe-c1c9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660170939698:android:4a91fcebf692671c850b2b",
+        "android_client_info": {
+          "package_name": "com.example.apppfe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR3Fn_BoUZXJ0iLTwRZSG32n7DmxRgaS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
