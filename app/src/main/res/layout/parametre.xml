@@ -106,7 +106,7 @@
                         android:progress="50"
                         android:paddingHorizontal="16dp"
                         android:thumb="@null"
-                        android:progressDrawable="@drawable/volume_progress"
+
                         android:splitTrack="false" />
 
                     <!-- Bouton d'augmentation du volume -->
