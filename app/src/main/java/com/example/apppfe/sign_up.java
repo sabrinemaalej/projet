@@ -11,10 +11,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.apppfe.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
 
 import java.util.regex.Matcher;
@@ -36,35 +40,68 @@ public class sign_up extends AppCompatActivity {
     protected void onCreate(Bundle savesInstanceState) {
         super.onCreate(savesInstanceState);
         setContentView(R.layout.sign_up);
-        gotosignin=findViewById(R.id.goToSignIn);
+
+        gotosignin = findViewById(R.id.goToSignIn);
         email = findViewById(R.id.emailSignUp);
         password = findViewById(R.id.passwordSignUp);
         confirmpswrd = findViewById((R.id.confirmpswrd));
-         btsignup=findViewById(R.id.signUp);
+        btsignup = findViewById(R.id.signUp);
 
-         progressDialog=new ProgressDialog(this);
-         firebaseAuth =FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+        firebaseAuth = FirebaseAuth.getInstance();
 
 
         gotosignin.setOnClickListener(v -> {
-            startActivity(new Intent(sign_up.this,sign_in.class));
+            startActivity(new Intent(sign_up.this, sign_in.class));
         });
 
 
         btsignup.setOnClickListener(v -> {
 //            progressDialog.setMessage("attant svp");
 //            progressDialog.show();
-            if (valide()){
+            if (valide()) {
 //                Toast.makeText(this,"valid",Toast.LENGTH_SHORT).show();
 //                progressDialog.dismiss();
-                firebaseAuth.createUserWithEmailAndPassword(emails.trim(),passwords.trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                firebaseAuth.createUserWithEmailAndPassword(emails.trim(), passwords.trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
+                        if (task.isSuccessful()) {
+                            sendEmailVerification();
+                        } else {
+                            Toast.makeText(sign_up.this, "register failed", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
                     }
                 });
             }
         });
+    }
+
+    private void sendEmailVerification() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null){
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(sign_up.this,"register fait avec succes svp verifier your mail",Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                    }else{
+                        Toast.makeText(sign_up.this,"echeque",Toast.LENGTH_SHORT).show();
+                   progressDialog.dismiss();
+                    }
+                }
+            });
+        }
+    }
+ private void senduserdata(){
+     FirebaseDatabase firebaseDatabase =FirebaseDatabase.getInstance();
+     ///ma base de donner illi n7ot fiha les donner
+     DatabaseReference myref= firebaseDatabase .getReference("users");
+     User user=new User(emails,passwords, confirmpswrds);
+     myref.child(""+firebaseAuth.getUid()).setValue(user);
+
+
     }
 
     private boolean valide() {
@@ -79,12 +116,14 @@ public class sign_up extends AppCompatActivity {
 
         } else if (!confirmpswrds.equals(passwords)) {
             confirmpswrd.setError("Les mots de passe ne correspondent pas !!!");
-             // Si les mots de passe ne correspondent pas, res est mis à false
-        }else
-        { res=true;}
+            // Si les mots de passe ne correspondent pas, res est mis à false
+        } else {
+            res = true;
+        }
         return res;
     }
-    private boolean validemail(String email) {
+
+    public boolean validemail(String email) {
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
