@@ -47,7 +47,6 @@ public class sign_up extends AppCompatActivity {
         confirmpswrd = findViewById((R.id.confirmpswrd));
         btsignup = findViewById(R.id.signUp);
 
-        progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -57,23 +56,22 @@ public class sign_up extends AppCompatActivity {
 
 
         btsignup.setOnClickListener(v -> {
-//            progressDialog.setMessage("attant svp");
-//            progressDialog.show();
+
             if (valide()) {
-//                Toast.makeText(this,"valid",Toast.LENGTH_SHORT).show();
-//                progressDialog.dismiss();
-                firebaseAuth.createUserWithEmailAndPassword(emails.trim(), passwords.trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                firebaseAuth.createUserWithEmailAndPassword(emails, passwords).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             sendEmailVerification();
                         } else {
                             Toast.makeText(sign_up.this, "register failed", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
+
                         }
                     }
                 });
             }
+
         });
     }
 
@@ -84,39 +82,42 @@ public class sign_up extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
+                            senduserdata();
                         Toast.makeText(sign_up.this,"register fait avec succes svp verifier your mail",Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
+
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(sign_up.this,sign_in.class));
+                        finish();
                     }else{
                         Toast.makeText(sign_up.this,"echeque",Toast.LENGTH_SHORT).show();
-                   progressDialog.dismiss();
+
                     }
                 }
             });
         }
     }
- private void senduserdata(){
-     FirebaseDatabase firebaseDatabase =FirebaseDatabase.getInstance();
-     ///ma base de donner illi n7ot fiha les donner
-     DatabaseReference myref= firebaseDatabase .getReference("users");
-     User user=new User(emails,passwords, confirmpswrds);
-     myref.child(""+firebaseAuth.getUid()).setValue(user);
+    private void senduserdata(){
+        FirebaseDatabase firebaseDatabase =FirebaseDatabase.getInstance();
+        DatabaseReference myref= firebaseDatabase .getReference("users");
+        User user=new User(emails,passwords, confirmpswrds);
+        myref.child(""+firebaseAuth.getUid()).setValue(user);
 
 
     }
 
     private boolean valide() {
-        boolean res = false; // Initialiser à true car si tous les champs sont valides, res devrait rester true
+        boolean res = false;
         emails = email.getText().toString();
         passwords = password.getText().toString();
         confirmpswrds = confirmpswrd.getText().toString();
         if (!validemail(emails)) {
-            email.setError("Email invalide!!!");// Si l'email est invalide, res est mis à false
+            email.setError("Email invalide!!!");
         } else if (passwords.isEmpty() || passwords.length() < 6) {
             password.setError("Mot de passe invalide!!!");
 
         } else if (!confirmpswrds.equals(passwords)) {
             confirmpswrd.setError("Les mots de passe ne correspondent pas !!!");
-            // Si les mots de passe ne correspondent pas, res est mis à false
+
         } else {
             res = true;
         }
