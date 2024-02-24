@@ -1,4 +1,6 @@
 package com.example.apppfe;
 
-public class maps {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class maps extends AppCompatActivity {
 }

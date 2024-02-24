@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".sign_up">
+    tools:context=".parametre">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,11 +32,9 @@
                 android:src="@drawable/logo" />
         </RelativeLayout>
 
-
         <!-- Vos champs existants -->
 
         <!-- Lien "Paramètres" -->
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +44,6 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,8 +52,8 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="10dp">
-            <!-- Lien "Paramètres" -->
 
+            <!-- Lien "Paramètres" -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,8 +62,6 @@
                 android:textColor="@color/bleuvert2"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
                     android:src="@drawable/volume" />
-                <!-- Lien "Notification" -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,21 +87,18 @@
                         android:layout_height="wrap_content"
                         android:text="-"
                         android:textSize="24sp"
-
-                        android:onClick="onVolumeDownClick"
-                        />
+                        android:onClick="onVolumeDownClick" />
 
                     <!-- Indicateur de niveau de volume -->
                     <SeekBar
                         android:id="@+id/volumeIndicator"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="60"
                         android:max="100"
                         android:progress="50"
                         android:paddingHorizontal="16dp"
                         android:thumb="@null"
-
                         android:splitTrack="false" />
 
                     <!-- Bouton d'augmentation du volume -->
@@ -118,7 +110,6 @@
                         android:textSize="24sp"
                         android:onClick="onVolumeUpClick" />
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
@@ -133,21 +124,21 @@
                     android:src="@drawable/language" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:onClick="onClickHistorique"
-                    android:padding="16dp"
-                    android:text="langue"
+                    android:layout_margin="10dp"
+                    android:text="Langue"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
-
-
+            <!-- ListView pour afficher les options de langue -->
+<!--            <ListView-->
+<!--                android:id="@+id/languageListViews"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="16dp" />-->
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>

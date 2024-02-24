@@ -3,6 +3,10 @@ package com.example.apppfe;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.ktx.Firebase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,12 +33,14 @@ public class sign_up extends AppCompatActivity {
     private EditText email, password, confirmpswrd;
     private String emails, passwords, confirmpswrds;
     private Button btsignup;
+    ////visibility
+    boolean passwordvisibility;
+    ////
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-                    "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     @Override
     protected void onCreate(Bundle savesInstanceState) {
         super.onCreate(savesInstanceState);
@@ -47,13 +52,11 @@ public class sign_up extends AppCompatActivity {
         confirmpswrd = findViewById((R.id.confirmpswrd));
         btsignup = findViewById(R.id.signUp);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
-
         gotosignin.setOnClickListener(v -> {
             startActivity(new Intent(sign_up.this, sign_in.class));
         });
 
+        firebaseAuth = FirebaseAuth.getInstance();
 
         btsignup.setOnClickListener(v -> {
 
@@ -73,6 +76,59 @@ public class sign_up extends AppCompatActivity {
             }
 
         });
+        password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2; // Position de l'icône à droite
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Vérifie si le toucher est sur l'icône à droite
+                    if (event.getRawX() >= password.getRight() - password.getCompoundDrawables()[Right].getBounds().width()) {
+                        int selection = password.getSelectionEnd();
+                        if (passwordvisibility) {
+                            // Pour masquer le mot de passe
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_off_24, 0);
+                            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordvisibility = false;
+                        } else {
+                            // Pour afficher le mot de passe
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
+                            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordvisibility = true;
+                        }
+                        password.setSelection(selection); // Rétablir la position du curseur après la modification
+                        return true; // Indique que l'événement a été consommé
+                    }
+                }
+                return false; // Indique que l'événement n'a pas été consommé
+            }
+        });
+       confirmpswrd.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2; // Position de l'icône à droite
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Vérifie si le toucher est sur l'icône à droite
+                    if (event.getRawX() >= confirmpswrd.getRight() - confirmpswrd.getCompoundDrawables()[Right].getBounds().width()) {
+                        int selection =confirmpswrd.getSelectionEnd();
+                        if (passwordvisibility) {
+                            // Pour masquer le mot de passe
+                            confirmpswrd.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_off_24, 0);
+                            confirmpswrd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordvisibility = false;
+                        } else {
+                            // Pour afficher le mot de passe
+                            confirmpswrd.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
+                            confirmpswrd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordvisibility = true;
+                        }
+                        confirmpswrd.setSelection(selection); // Rétablir la position du curseur après la modification
+                        return true; // Indique que l'événement a été consommé
+                    }
+                }
+                return false; // Indique que l'événement n'a pas été consommé
+            }
+        });
+
     }
 
     private void sendEmailVerification() {
@@ -86,7 +142,7 @@ public class sign_up extends AppCompatActivity {
                         Toast.makeText(sign_up.this,"register fait avec succes svp verifier your mail",Toast.LENGTH_LONG).show();
 
                         firebaseAuth.signOut();
-                        startActivity(new Intent(sign_up.this,sign_in.class));
+                        startActivity(new Intent(sign_up.this,acceuil.class));
                         finish();
                     }else{
                         Toast.makeText(sign_up.this,"echeque",Toast.LENGTH_SHORT).show();

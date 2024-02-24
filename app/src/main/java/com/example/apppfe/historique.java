@@ -1,4 +1,6 @@
 package com.example.apppfe;
 
-public class historique {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class historique extends AppCompatActivity {
 }

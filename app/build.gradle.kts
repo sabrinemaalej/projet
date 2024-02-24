@@ -1,9 +1,11 @@
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
+
 }
 
 android {
+
     namespace = "com.example.apppfe"
     compileSdk = 34
 
@@ -30,6 +32,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {

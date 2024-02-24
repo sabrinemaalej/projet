@@ -1,4 +1,6 @@
 package com.example.apppfe;
 
-public class acceuil {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class acceuil extends AppCompatActivity {
 }
