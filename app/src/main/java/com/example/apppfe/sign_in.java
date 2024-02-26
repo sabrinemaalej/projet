@@ -31,8 +31,8 @@ public class sign_in extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private String emailS,passwordS;
-////visibility
-    boolean passwordvisibility;
+//////visibility
+   boolean passwordvisibility;
     ////
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
     private CheckBox rememberMe;
@@ -41,7 +41,7 @@ public class sign_in extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_in);
+       setContentView(R.layout.sign_in);
 
         goToSignUp = findViewById(R.id.goToSignUp);
         goToForgetPass = findViewById(R.id.goToForgetPassword);
@@ -54,8 +54,7 @@ public class sign_in extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         SharedPreferences preferences = getSharedPreferences("checkBox", MODE_PRIVATE);
-        boolean resCheckBox = preferences.getBoolean("remember", false);
-
+      boolean resCheckBox = preferences.getBoolean("remember", false);
         if(resCheckBox && firebaseAuth.getCurrentUser() != null) {
             startActivity(new Intent(sign_in.this, acceuil.class));
             finish();
@@ -77,9 +76,9 @@ public class sign_in extends AppCompatActivity {
             }
         });
 
-        goToSignUp.setOnClickListener(v -> {
-            startActivity(new Intent(sign_in.this,sign_up.class));
-        });
+//        goToSignUp.setOnClickListener(v -> {
+//            startActivity(new Intent(sign_in.this,sign_up.class));
+//        });
 
         goToForgetPass.setOnClickListener(v -> {
             startActivity(new Intent(sign_in.this,forgetpassword.class));
@@ -95,6 +94,9 @@ public class sign_in extends AppCompatActivity {
             }else {
                 login(emailS,passwordS);
             }
+
+
+
         });
 
 
@@ -112,24 +114,24 @@ public class sign_in extends AppCompatActivity {
                             password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_off_24, 0);
                             password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                             passwordvisibility = false;
-                        } else {
+                       } else {
                             // Pour afficher le mot de passe
-                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
+                           password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
                             password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                             passwordvisibility = true;
-                        }
+                       }
                         password.setSelection(selection); // Rétablir la position du curseur après la modification
                         return true; // Indique que l'événement a été consommé
                     }
                 }
                 return false; // Indique que l'événement n'a pas été consommé
             }
-        });
+      });
 
-///
+
     }
 
-    private void login(String emailS, String passwordS) {
+   private void login(String emailS, String passwordS) {
         progressDialog.setMessage("Please wait...!");
         progressDialog.show();
 
@@ -159,7 +161,7 @@ public class sign_in extends AppCompatActivity {
     }
 
     private boolean isValidEmail(String email){
-        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+       Pattern pattern = Pattern.compile(EMAIL_REGEX);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }

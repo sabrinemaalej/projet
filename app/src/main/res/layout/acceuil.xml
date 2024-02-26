@@ -54,6 +54,7 @@
                     android:src="@drawable/parametre" />
 
                 <TextView
+                    android:id="@+id/parametreacceuil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -78,6 +79,7 @@
                     android:src="@drawable/history" />
 
                 <TextView
+                    android:id="@+id/historiqueacceuil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -102,6 +104,7 @@
                     android:src="@drawable/maps" />
 
                 <TextView
+                    android:id="@+id/mapsacceuil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -126,6 +129,7 @@
                     android:src="@drawable/suiveur" />
 
                 <TextView
+                    android:id="@+id/ajoutersuivacceuil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -150,6 +154,7 @@
                     android:src="@drawable/ajoterpersone" />
 
                 <TextView
+                    android:id="@+id/ajouterperacceuil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

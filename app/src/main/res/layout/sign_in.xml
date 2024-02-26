@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,10 +11,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="15dp"
         android:background="@drawable/shape"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="23dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,11 +23,12 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="120dp"
+                android:layout_alignParentRight="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginRight="148dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:src="@drawable/logo" />
         </RelativeLayout>
@@ -35,20 +36,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="15dp"
             android:background="@drawable/shape"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="23dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text=""
-                android:textColor="@color/bleuvert2"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -63,8 +55,8 @@
                 android:id="@+id/emailSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:autofillHints=""
                 android:drawableTint="@color/bleuvert2"
                 android:hint="nomprebom@abc.com"
@@ -84,54 +76,65 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+
             <EditText
                 android:id="@+id/passwordSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:autofillHints=""
+                android:drawableRight="@drawable/baseline_visibility_off_24"
                 android:drawableTint="@color/bleuvert2"
                 android:hint="*********"
                 android:inputType="textPassword"
+                android:longClickable="false"
                 android:minHeight="48dp"
                 android:padding="10dp"
                 android:textColorHint="@color/black"
                 android:textSize="14sp"
-
-
-
-
-                android:drawableRight="@drawable/baseline_visibility_off_24"
-                    android:longClickable="false"
                 android:textStyle="bold" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                android:text=""
+                android:textColor="@color/bleuvert2"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/rememberMe"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:text="Remember me"
+                android:textColor="@color/bleuvert2"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                android:text=""
+                android:textColor="@color/bleuvert2"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/rememberMe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Remember me"
-                    android:textColor="@color/bleuvert2"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/goToForgetPassword"
-                    android:layout_width="0dp"
-                    android:layout_height="31dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Forget Password ?"
-                    android:textColor="@color/bleuvert2"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -140,30 +143,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/bleuvert2"
-                android:text="SIGN IN"
+                android:text="connecter"
                 android:textColor="@color/white" />
-
             <TextView
                 android:id="@+id/goToSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="22dp"
-                android:text="Don't have an account yet? Sign Up"
+                android:text=""
                 android:textColor="@color/bleuvert2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/goToForgetPassword"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text=""
+                android:layout_gravity="center"
+                android:text="mot de passe oublié ?"
                 android:textColor="@color/bleuvert2"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
+
 
         </LinearLayout>
     </LinearLayout>

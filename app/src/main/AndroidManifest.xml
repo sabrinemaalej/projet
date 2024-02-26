@@ -2,10 +2,10 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-
+<!--    image-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--    image-->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,6 +23,10 @@
             android:exported="false" />
         <activity
             android:name=".parametre"
+            android:exported="false" />
+
+        <activity
+            android:name=".ajouterpersonne"
             android:exported="false" />
         <activity
             android:name=".acceuil_suiveur"
