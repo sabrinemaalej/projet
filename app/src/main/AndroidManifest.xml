@@ -2,6 +2,16 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!--    -->
+    <meta-data
+        android:name="com.google.gms.version"
+        android:value="@integer/google_play_services_version"
+        />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <!--    -->
+
 <!--    image-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,6 +32,10 @@
             android:name=".sign_up"
             android:exported="false" />
         <activity
+            android:name=".liste_personne"
+            android:exported="false" />
+
+        <activity
             android:name=".parametre"
             android:exported="false" />
 
@@ -31,6 +45,7 @@
         <activity
             android:name=".acceuil_suiveur"
             android:exported="false" />
+
         <activity
             android:name=".historique"
             android:exported="false" />
@@ -43,6 +58,7 @@
         <activity
             android:name=".acceuil"
             android:exported="false" />
+
         <activity
             android:name=".sign_in"
             android:exported="true">

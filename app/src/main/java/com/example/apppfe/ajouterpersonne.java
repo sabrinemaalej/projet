@@ -1,6 +1,5 @@
 package com.example.apppfe;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.apppfe.models.personne;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -23,14 +21,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ajouterpersonne extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private Button selectButton, enrgButton;
+    private Button selectButton, enrgButton,listbt;
     private EditText codeEditText, nomEditText;
     private ImageView imageView;
     private Uri imageUri;
@@ -49,13 +45,29 @@ public class ajouterpersonne extends AppCompatActivity {
 
         // Create a storage reference and database reference
         storageReference = storage.getReference("images");
-        databaseReference = database.getReference("users");
+        databaseReference = database.getReference("person");
 
         selectButton = findViewById(R.id.select);
         enrgButton = findViewById(R.id.enrg);
         codeEditText = findViewById(R.id.code);
         nomEditText = findViewById(R.id.nom);
         imageView = findViewById(R.id.img);
+        listbt=findViewById(R.id.btlist);
+
+        /////list
+        listbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ajouterpersonne.this,liste_personne.class));
+            }
+        });
+
+/////
+
+
+
+
+
 
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +76,15 @@ public class ajouterpersonne extends AppCompatActivity {
             }
         });
 
+
+
         enrgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 uploadFile();
             }
         });
+
     }
 
     private void openFileChooser() {

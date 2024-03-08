@@ -1,4 +1,4 @@
-package com.example.apppfe.models;
+package com.example.apppfe;
 
 public class personne {
     private String code;

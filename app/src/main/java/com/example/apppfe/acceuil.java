@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class acceuil extends AppCompatActivity {
-    private TextView goTohistorique,goToparametre,gotomaps,gotoajousuiv,gotoajoupersonne;
+    private TextView goTohistorique,goToparametre,gotomaps,gotoajousuiv,gotoajoupersonne, golistepersonne;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +18,15 @@ public class acceuil extends AppCompatActivity {
         gotomaps = findViewById(R.id.mapsacceuil);
         gotoajousuiv = findViewById(R.id.ajoutersuivacceuil);
        gotoajoupersonne= findViewById(R.id.ajouterperacceuil);
+//        golistepersonne = findViewById(R.id.listepersonne);
 
 
         goToparametre.setOnClickListener(v -> {
             startActivity(new Intent(acceuil.this,parametre.class));
         });
+//        golistepersonne.setOnClickListener(v -> {
+//            startActivity(new Intent(acceuil.this,liste_personne.class));
+//        });
         goTohistorique.setOnClickListener(v -> {
             startActivity(new Intent(acceuil.this, historique.class));
         });
@@ -36,4 +40,5 @@ public class acceuil extends AppCompatActivity {
         gotoajousuiv.setOnClickListener(v -> {
             startActivity(new Intent(acceuil.this, sign_up.class));
         });
+
 }}
